@@ -4,36 +4,38 @@
     {
        public  static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Employee Wage Computation!");
+            Console.WriteLine("Welcome to EmplyeeWageCompute");
             const int FULL_TIME = 1;
             const int PART_TIME = 2;
             const int EMP_RATE_PER_HR = 20;
-            int empHrs = 0;
-            int empWage = 0;
+            const int MAX_WORKING_DAYS = 20;
+            int empHrs = 0, empWage = 0, totalWage = 0, day = 1;
 
             //UC-1 Check employee present or not
             Random random = new Random();
-            int employeeInput = random.Next(0, 3);
-            switch (employeeInput) //UC4 using Switch case
+
+            for (day = 1; day <= MAX_WORKING_DAYS; day++)
             {
-                case 1:
-                    Console.WriteLine("FullTime Employee is Present");
-                    empHrs = 8;
-                    break;
-                case 2:
-
-                    Console.WriteLine("PartTime Employee is Present");
-                    empHrs = 4;
-                    break;
-                default:
-                    Console.WriteLine("Employee is Absent");
-                    empHrs = 0;
-                    break;
+                int employeeInput = random.Next(0, 3);
+                //UC-4- Switch case
+                switch (employeeInput)
+                {
+                    case FULL_TIME:
+                        empHrs = 8;
+                        break;
+                    case PART_TIME:
+                        empHrs = 4;
+                        break;
+                    default:
+                        empHrs = 0;
+                        break;
+                }
+                //UC-2 calculate EmployeeWage
+                empWage = EMP_RATE_PER_HR * empHrs;
+                totalWage += empWage; //totalWage=totalWage+empWage
             }
-
-            //UC-2 & UC-3 calculate Employee Wage
-            empWage = EMP_RATE_PER_HR * empHrs;
-            Console.WriteLine("Employee wage is :" + empWage);
+            Console.WriteLine("Total wage for {0} days:{1}", (day - 1), totalWage);
+            Console.ReadLine();
 
         }
     }
